@@ -1,0 +1,21 @@
+name: Test multi repo actions
+
+inputs:
+  file:
+    description: Path
+    required: true
+  comment:
+    description: Comment 
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Write-Host
+      shell: pwsh
+      env:
+        file: ${{ inputs.file }}
+        comment: ${{ inputs.comment }}
+        apiKey: ${{ inputs.apiKey }}
+      run: ${{ github.action_path }}/script.ps1
+       
