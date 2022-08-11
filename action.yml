@@ -16,6 +16,5 @@ runs:
       env:
         file: ${{ inputs.file }}
         comment: ${{ inputs.comment }}
-        apiKey: ${{ inputs.apiKey }}
       run: ${{ github.action_path }}/script.ps1
        
