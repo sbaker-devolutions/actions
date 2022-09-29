@@ -1,6 +1,7 @@
+const fs = require('fs');
 const core = require('@actions/core');
-const github = require('@actions/github');
 const cdxgen = require('@appthreat/cdxgen');
+const execSync = require('child_process').execSync;
 
 try {
   try {
