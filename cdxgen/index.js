@@ -11,6 +11,8 @@ try {
     console.log(output);
   }
 
+  let output = execSync('cdxgen -r true -o bom.xml', { encoding: 'utf-8' });
+  console.log(output);
 
 } catch (error) {
   core.setFailed(error.message);
