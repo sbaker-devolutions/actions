@@ -1,0 +1,26 @@
+name: CycloneDX docker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-sbom:
+    name: Generate SBOM
+    runs-on: ubuntu-latest
+    container:
+      image: cyclonedx/cyclonedx-dotnet
+
+    steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
+        
+        - name: Run CycloneDX
+          run: docker run cyclonedx/cyclonedx-dotnet HelloWorld.sln -o .
+          env:
+            SEMGREP_RULES: p/default # more at semgrep.dev/explore
+
+        - name: Save SBOM
+          uses: actions/upload-artifact@v2
+          with:
+            name: bom.xml
+            path: bom.xml
