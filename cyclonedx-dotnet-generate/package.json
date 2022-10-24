@@ -1,0 +1,9 @@
+{
+  "name": "cyclonedx-dotnet-generate",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "devDependencies": {},
+  "dependencies": {
+    "@actions/core": "1.2.6"
+  }
+}
