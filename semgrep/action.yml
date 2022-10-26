@@ -17,7 +17,7 @@ runs:
   steps:
     - uses: actions/checkout@v3
 
-    - run: dir -r -name
+    - run: ls -LR
       shell: bash
 
     # - name: Setup homebrew
