@@ -17,7 +17,8 @@ runs:
   steps:
     - uses: actions/checkout@v3
       with: 
-        repository: sbaker-devolutions/actions@master
+        repository: sbaker-devolutions/actions
+        ref: master
         path: actionrepo
 
     - run: ls .. -LR
