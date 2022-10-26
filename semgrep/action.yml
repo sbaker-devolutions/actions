@@ -22,11 +22,13 @@ runs:
 
     # - run: brew install cyclonedx/cyclonedx/cyclonedx-cli
 
-    - run: python3 -m pip install semgrep
+    - name: Install semgrep
+      run: python3 -m pip install semgrep
       shell: bash
 
-    - run: semgrep ci
-      shell: bash
+    - name: Run semgrep
       env:
-        SEMGREP_RULES: ${{ github.event.inputs.rules }}
-        SEMGREP_TIMEOUT: ${{ github.event.inputs.timeout }}
+        Rules: ${{ github.event.inputs.rules }}
+        Timeout: ${{ github.event.inputs.timeout }}
+      run: semgrep ci -c ${{ env.Rules }} -timeout ${{ env.Timeout }}
+      shell: bash
