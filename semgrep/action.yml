@@ -34,7 +34,7 @@ runs:
         timeout: ${{ github.event.inputs.timeout }}
       shell: bash
 
-    - run: semgrep ci -c p/default --timeout 1800 -o semgrep_result.txt
+    - run: semgrep ci -c p/default --timeout 1800 -o semgrep_result.txt --suppress-errors 
       env:
         rules: ${{ github.event.inputs.rules }}
         timeout: ${{ github.event.inputs.timeout }}
