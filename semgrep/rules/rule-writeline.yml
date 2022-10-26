@@ -4,7 +4,7 @@ rules:
     languages:
       - c#
     message: |
-      Writes to Console
+      Rule repo: Writes to Console
     patterns:
       - pattern: |
           $C.WriteLine(...);
