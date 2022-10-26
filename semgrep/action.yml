@@ -1,5 +1,4 @@
 name: Semgrep
-description: Must run under ubuntu
 
 inputs:
   rules:
@@ -19,7 +18,7 @@ runs:
       with: 
         repository: sbaker-devolutions/actions
         ref: master
-        path: actionrepo
+        path: rules
 
     - run: ls -LR
       shell: bash
@@ -33,7 +32,7 @@ runs:
       shell: bash
 
       # -o semgrep_result.txt --suppress-errors 
-    - run: semgrep ci -c actionrepo/semgrep/$rules --timeout $timeout
+    - run: semgrep ci -c $rules --timeout $timeout
       env:
         rules: ${{ inputs.rules }}
         timeout: ${{ inputs.timeout }}
