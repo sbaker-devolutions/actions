@@ -25,17 +25,11 @@ runs:
     - run: python3 -m pip install semgrep
       shell: bash
 
-    - run: echo Rules $rules
+      # -o semgrep_result.txt --suppress-errors 
+    - run: semgrep ci -c $rules --timeout $timeout
       env:
         rules: ${{ inputs.rules }}
         timeout: ${{ inputs.timeout }}
-      shell: bash
-
-      # -o semgrep_result.txt --suppress-errors 
-    - run: semgrep ci -c p/default --timeout 1800
-      env:
-        rules: ${{ github.event.inputs.rules }}
-        timeout: ${{ github.event.inputs.timeout }}
       shell: bash
 
     # - uses: actions/upload-artifact@v3
