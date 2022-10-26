@@ -25,7 +25,7 @@ runs:
     - run: python3 -m pip install semgrep
       shell: bash
 
-    - run: echo Rules - $rules"
+    - run: echo Rules - $rules
       shell: bash
 
     - run: echo Rules ${{ env.rules }} 
