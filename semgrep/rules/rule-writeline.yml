@@ -1,0 +1,10 @@
+rules:
+  - id: write-line
+    severity: WARNING
+    languages:
+      - c#
+    message: |
+      Writes to Console
+    patterns:
+      - pattern: |
+          $C.WriteLine(...);
