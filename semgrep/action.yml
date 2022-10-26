@@ -27,8 +27,8 @@ runs:
 
     - run: echo Rules $rules
       env:
-        rules: ${{ github.event.inputs.rules }}
-        timeout: ${{ github.event.inputs.timeout }}
+        rules: ${{ inputs.rules }}
+        timeout: ${{ inputs.timeout }}
       shell: bash
 
       # -o semgrep_result.txt --suppress-errors 
