@@ -22,13 +22,25 @@ runs:
 
     # - run: brew install cyclonedx/cyclonedx/cyclonedx-cli
 
-    - name: Install semgrep
-      run: python3 -m pip install semgrep
+    - run: python3 -m pip install semgrep
       shell: bash
 
-    - name: Run semgrep
-      env:
-        Rules: ${{ github.event.inputs.rules }}
-        Timeout: ${{ github.event.inputs.timeout }}
-      run: semgrep ci -c p/default
+    - run: echo Rules - $rules"
       shell: bash
+
+    - run: echo Rules ${{ env.rules }} 
+      env:
+        rules: ${{ github.event.inputs.rules }}
+        timeout: ${{ github.event.inputs.timeout }}
+      shell: bash
+
+    - run: semgrep ci -c p/default --timeout 1800 -o semgrep_result.txt
+      env:
+        rules: ${{ github.event.inputs.rules }}
+        timeout: ${{ github.event.inputs.timeout }}
+      shell: bash
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: semgrep_result.txt
+        path: semgrep_result.txt
