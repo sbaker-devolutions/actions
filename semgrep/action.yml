@@ -1,4 +1,5 @@
 name: Semgrep
+description: Must run under ubuntu
 
 inputs:
   rules:
@@ -7,16 +8,21 @@ inputs:
     required: true
   timeout:
     description: Timeout default 1800 seconds (30 minutes). Set to 0 to disable.
-    default: 1800
+    default: '1800'
     required: true
   
 runs:
   using: composite
-  container:
-    image: returntocorp/semgrep
 
   steps:
     - uses: actions/checkout@v3
+
+    # - name: Setup homebrew
+    #   uses: Homebrew/actions/setup-homebrew@master
+
+    # - run: brew install cyclonedx/cyclonedx/cyclonedx-cli
+
+    - run: python3 -m pip install semgrep
 
     - run: semgrep ci
       env:
