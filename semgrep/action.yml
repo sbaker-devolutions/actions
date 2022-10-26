@@ -30,5 +30,5 @@ runs:
       env:
         Rules: ${{ github.event.inputs.rules }}
         Timeout: ${{ github.event.inputs.timeout }}
-      run: semgrep ci -c ${{ env.Rules }} -timeout ${{ env.Timeout }}
+      run: semgrep ci -c ${{ env.Rules }} --timeout ${{ env.Timeout }}
       shell: bash
