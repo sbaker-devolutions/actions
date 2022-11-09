@@ -28,10 +28,10 @@ runs:
     - run: ls -LR
       shell: bash
 
-    # - name: Setup homebrew
-    #   uses: Homebrew/actions/setup-homebrew@master
+    # # - name: Setup homebrew
+    # #   uses: Homebrew/actions/setup-homebrew@master
 
-    # - run: brew install cyclonedx/cyclonedx/cyclonedx-cli
+    # # - run: brew install cyclonedx/cyclonedx/cyclonedx-cli
 
     - run: python3 -m pip install semgrep
       shell: bash
@@ -47,3 +47,4 @@ runs:
       with:
         name: semgrep_result.txt
         path: semgrep_result.txt
+        if-no-files-found: ignore
