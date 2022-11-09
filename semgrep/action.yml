@@ -34,8 +34,12 @@ runs:
         timeout: ${{ inputs.timeout }}
       shell: bash
 
+    - run: $env:SEMGREP_FILE_EXISTS = Test-Path semgrep_result.txt -PathType Leaf
+      shell: pwsh
+
     - uses: actions/upload-artifact@v3
       with:
         name: semgrep_result.txt
         path: semgrep_result.txt
         if-no-files-found: ignore
+      if: ${{ env.SEMGREP_FILE_EXISTS == 'true' }}
