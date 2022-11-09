@@ -25,18 +25,9 @@ runs:
         ref: master
         path: rules
 
-    - run: ls -LR
-      shell: bash
-
-    # # - name: Setup homebrew
-    # #   uses: Homebrew/actions/setup-homebrew@master
-
-    # # - run: brew install cyclonedx/cyclonedx/cyclonedx-cli
-
     - run: python3 -m pip install semgrep
       shell: bash
 
-      # -o semgrep_result.txt --suppress-errors 
     - run: semgrep ci -c $rules --timeout $timeout -o semgrep_result.txt || true
       env:
         rules: ${{ inputs.rules }}
