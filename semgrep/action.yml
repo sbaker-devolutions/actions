@@ -42,4 +42,4 @@ runs:
         name: semgrep_result.txt
         path: semgrep_result.txt
         if-no-files-found: ignore
-      if: ${{ env.SEMGREP_FILE_EXISTS == 'true' }}
+      if: ${{ env.SEMGREP_FILE_EXISTS == 'True' }}
