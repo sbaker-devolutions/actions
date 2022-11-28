@@ -32,7 +32,7 @@ runs:
       shell: bash
 
     - name: run semgrep
-      run: semgrep ci -c $rules --timeout $timeout -o semgrep_result.txt || true
+      run: semgrep ci -c $rules --timeout $timeout -o semgrep_result.txt
       shell: bash
       env:
         rules: ${{ inputs.rules }}
