@@ -23,7 +23,7 @@ runs:
     - name: checkout semgrep rules 
       uses: actions/checkout@v3
       with: 
-        repository: devolutions/semgrep-rules
+        repository: sbaker-devolutions/semgrep-rules
         ref: master
         path: rules
 
