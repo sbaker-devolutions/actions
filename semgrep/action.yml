@@ -14,32 +14,33 @@ runs:
   using: composite
 
   steps:
-    - uses: actions/github-script@v3
+    - name: verify semgrep compatibility
       if: ${{ runner.os != 'Linux' }}
+      uses: actions/github-script@v3
       with:
         script: core.setFailed('Semgrep action must run under Ubuntu!')
 
-    - uses: actions/checkout@v3
+    - name: checkout semgrep rules 
+      uses: actions/checkout@v3
       with: 
-        repository: sbaker-devolutions/semgrep-rules
+        repository: devolutions/semgrep-rules
         ref: master
         path: rules
 
-    - run: python3 -m pip install semgrep
+    - name: install semgrep
+      run: python3 -m pip install semgrep
       shell: bash
 
-    - run: semgrep ci -c $rules --timeout $timeout -o semgrep_result.txt || true
+    - name: run semgrep
+      run: semgrep ci -c $rules --timeout $timeout -o semgrep_result.txt || true
+      shell: bash
       env:
         rules: ${{ inputs.rules }}
         timeout: ${{ inputs.timeout }}
-      shell: bash
 
-    - run: $env:SEMGREP_FILE_EXISTS = Test-Path semgrep_result.txt -PathType Leaf
-      shell: pwsh
-
-    - uses: actions/upload-artifact@v3
+    - name: upload artifact
+      uses: actions/upload-artifact@v3
       with:
         name: semgrep_result.txt
         path: semgrep_result.txt
         if-no-files-found: ignore
-      if: ${{ env.SEMGREP_FILE_EXISTS == 'True' }}
