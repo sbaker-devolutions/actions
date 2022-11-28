@@ -41,6 +41,6 @@ runs:
     - name: upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: semgrep_result.txt
+        name: semgrep_result
         path: semgrep_result.txt
         if-no-files-found: ignore
