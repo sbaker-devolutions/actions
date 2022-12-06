@@ -9,6 +9,9 @@ inputs:
     description: Timeout default 1800 seconds (30 minutes). Set to 0 to disable.
     default: '1800'
     required: true
+  let-fail:
+    type: boolean
+    description: Will fail on finds.
   
 runs:
   using: composite
@@ -32,7 +35,13 @@ runs:
       shell: bash
 
     - name: run semgrep
-      run: semgrep ci -c $rules --timeout $timeout -o semgrep_result.txt || true
+      run: |
+        if ${{ inputs.let-fail }}
+        then
+          semgrep ci -c $rules --timeout $timeout
+        else
+          semgrep ci -c $rules --timeout $timeout -o semgrep_result.txt || true
+        fi
       shell: bash
       env:
         rules: ${{ inputs.rules }}
