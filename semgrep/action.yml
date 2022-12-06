@@ -10,8 +10,10 @@ inputs:
     default: '1800'
     required: true
   let-fail:
-    type: boolean
+    default: false
     description: Will fail on finds.
+    required: false
+    type: boolean
   
 runs:
   using: composite
@@ -36,7 +38,7 @@ runs:
 
     - name: run semgrep
       run: |
-        if ${{ inputs.let-fail }}
+        if ${{ inputs.let-fail == 'true' }}
         then
           semgrep ci -c $rules --timeout $timeout
         else
